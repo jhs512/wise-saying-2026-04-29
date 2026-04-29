@@ -58,4 +58,30 @@ public class WiseSayingController {
 
         wiseSayingService.delete(wiseSaying);
     }
+
+    public void actionModify(Rq rq) {
+        int id = rq.getParamAsInt("id", 0);
+
+        if (id == 0) {
+            System.out.println("id(숫자)를 입력해주세요.");
+            return;
+        }
+
+        WiseSaying wiseSaying = wiseSayingService.findById(id).orElse(null);
+
+        if (wiseSaying == null) {
+            System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
+            return;
+        }
+
+        System.out.printf("명언(기존) : %s\n", wiseSaying.getContent());
+        System.out.print("명언 : ");
+        String content = scanner.nextLine().trim();
+
+        System.out.printf("작가(기존) : %s\n", wiseSaying.getAuthor());
+        System.out.print("작가 : ");
+        String author = scanner.nextLine().trim();
+
+        wiseSayingService.modify(wiseSaying, content, author);
+    }
 }

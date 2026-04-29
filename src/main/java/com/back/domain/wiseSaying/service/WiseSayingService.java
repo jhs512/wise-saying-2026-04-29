@@ -34,4 +34,11 @@ public class WiseSayingService {
     public void delete(WiseSaying wiseSaying) {
         wiseSayingRepository.delete(wiseSaying);
     }
+
+    public void modify(WiseSaying wiseSaying, String content, String author) {
+        wiseSaying.setContent(content);
+        wiseSaying.setAuthor(author);
+
+        wiseSayingRepository.save(wiseSaying);
+    }
 }
