@@ -72,4 +72,26 @@ public class WiseSayingControllerTest {
                         1 / 이순신 / 나의 죽음을 적들에게 알리지 말라.
                         """);
     }
+
+    @Test
+    @DisplayName("삭제")
+    void t5() {
+        final String out = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라.
+                이순신
+                등록
+                너 자신을 알라.
+                소크라테스
+                삭제?id=2
+                목록
+                """);
+
+        assertThat(out)
+                .contains("""
+                        번호 / 작가 / 명언
+                        ----------------------
+                        1 / 이순신 / 나의 죽음을 적들에게 알리지 말라.
+                        """);
+    }
 }
