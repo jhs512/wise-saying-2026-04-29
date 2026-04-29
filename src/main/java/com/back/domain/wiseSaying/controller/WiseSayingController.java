@@ -5,7 +5,6 @@ import com.back.domain.wiseSaying.entity.WiseSaying;
 import com.back.domain.wiseSaying.service.WiseSayingService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class WiseSayingController {
@@ -50,14 +49,12 @@ public class WiseSayingController {
             return;
         }
 
-        Optional<WiseSaying> opWiseSaying = wiseSayingService.findById(id);
+        WiseSaying wiseSaying = wiseSayingService.findById(id).orElse(null);
 
-        if (opWiseSaying.isEmpty()) {
+        if (wiseSaying == null) {
             System.out.printf("%d번 명언은 존재하지 않습니다.\n", id);
             return;
         }
-
-        WiseSaying wiseSaying = opWiseSaying.get();
 
         wiseSayingService.delete(wiseSaying);
     }
