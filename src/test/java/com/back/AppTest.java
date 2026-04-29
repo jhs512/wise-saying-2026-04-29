@@ -14,4 +14,13 @@ public class AppTest {
         assertThat(out)
                 .contains("== 명언 앱 ==");
     }
+
+    @Test
+    @DisplayName("`명령) ` 출력")
+    void t2() {
+        final String out = AppTestRunner.run("");
+
+        assertThat(out)
+                .contains("명령) ");
+    }
 }
