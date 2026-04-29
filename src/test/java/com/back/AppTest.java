@@ -23,4 +23,13 @@ public class AppTest {
         assertThat(out)
                 .contains("명령) ");
     }
+
+    @Test
+    @DisplayName("종료")
+    void t3() {
+        final String out = AppTestRunner.run("");
+
+        assertThat(out)
+                .contains("프로그램이 종료되었습니다.");
+    }
 }
