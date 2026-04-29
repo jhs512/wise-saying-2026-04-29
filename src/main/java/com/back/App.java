@@ -1,5 +1,8 @@
 package com.back;
 
+import com.back.domain.system.controller.SystemController;
+import com.back.domain.wiseSaying.controller.WiseSayingController;
+
 import java.util.Scanner;
 
 public class App {
@@ -12,6 +15,9 @@ public class App {
     public void run() {
         System.out.println("== 명언 앱 ==");
 
+        WiseSayingController wiseSayingController = new WiseSayingController(scanner);
+        SystemController systemController = new SystemController();
+
         while (true) {
             System.out.print("명령) ");
 
@@ -19,14 +25,10 @@ public class App {
 
             switch (cmd) {
                 case "등록" -> {
-                    System.out.print("명언 : ");
-                    String content = scanner.nextLine().trim();
-
-                    System.out.print("작가 : ");
-                    String author = scanner.nextLine().trim();
+                    wiseSayingController.actionWrite();
                 }
                 case "종료" -> {
-                    System.out.println("프로그램이 종료되었습니다.");
+                    systemController.actionExit();
                     return;
                 }
             }
