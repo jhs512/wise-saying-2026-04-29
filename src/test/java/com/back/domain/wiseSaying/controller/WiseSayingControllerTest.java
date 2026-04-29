@@ -94,4 +94,21 @@ public class WiseSayingControllerTest {
                         1 / 이순신 / 나의 죽음을 적들에게 알리지 말라.
                         """);
     }
+
+    @Test
+    @DisplayName("삭제, 존재하지 않는 명언 삭제요청에 대한 처리")
+    void t6() {
+        final String out = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라.
+                이순신
+                등록
+                너 자신을 알라.
+                소크라테스
+                삭제?id=5
+                """);
+
+        assertThat(out)
+                .contains("5번 명언은 존재하지 않습니다.");
+    }
 }
