@@ -42,12 +42,34 @@ public class WiseSayingControllerTest {
                 나의 죽음을 적들에게 알리지 말라.
                 이순신
                 등록
-                너 자신을 알라
+                너 자신을 알라.
                 소크라테스
                 """);
 
         assertThat(out)
                 .contains("1번 명언이 등록되었습니다.")
                 .contains("2번 명언이 등록되었습니다.");
+    }
+
+    @Test
+    @DisplayName("목록")
+    void t4() {
+        final String out = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라.
+                이순신
+                등록
+                너 자신을 알라.
+                소크라테스
+                목록
+                """);
+
+        assertThat(out)
+                .contains("""
+                        번호 / 작가 / 명언
+                        ----------------------
+                        2 / 소크라테스 / 너 자신을 알라.
+                        1 / 이순신 / 나의 죽음을 적들에게 알리지 말라.
+                        """);
     }
 }
