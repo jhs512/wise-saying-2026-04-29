@@ -15,9 +15,7 @@ public class WiseSayingRepository {
     }
 
     public void save(WiseSaying wiseSaying) {
-        boolean isNew = wiseSaying.getId() == 0;
-
-        if (isNew) {
+        if (wiseSaying.isNew()) {
             wiseSaying.setId(++lastId);
 
             wiseSayings.add(wiseSaying);
