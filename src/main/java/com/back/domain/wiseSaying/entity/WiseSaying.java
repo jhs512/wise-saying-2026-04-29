@@ -15,6 +15,10 @@ public class WiseSaying {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getContent() {
         return content;
     }
