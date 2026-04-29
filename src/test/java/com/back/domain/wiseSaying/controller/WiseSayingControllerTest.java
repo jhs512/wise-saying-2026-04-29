@@ -111,4 +111,25 @@ public class WiseSayingControllerTest {
         assertThat(out)
                 .contains("5번 명언은 존재하지 않습니다.");
     }
+
+    @Test
+    @DisplayName("수정")
+    void t7() {
+        final String out = AppTestRunner.run("""
+                등록
+                나의 죽음을 적들에게 알리지 말라.
+                이순신
+                등록
+                너 자신을 알라.
+                소크라테스
+                수정?id=1
+                나의 죽음을 적들이 모르게 해라.
+                충무공
+                목록
+                """);
+
+        assertThat(out)
+                .doesNotContain("1 / 이순신 / 나의 죽음을 적들에게 알리지 말라.")
+                .contains("1 / 충무공 / 나의 죽음을 적들이 모르게 해라.");
+    }
 }
