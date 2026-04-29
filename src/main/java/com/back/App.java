@@ -23,9 +23,12 @@ public class App {
 
             String cmd = scanner.nextLine().trim();
 
-            switch (cmd) {
+            Rq rq = new Rq(cmd);
+
+            switch (rq.getActionName()) {
                 case "등록" -> wiseSayingController.actionWrite();
                 case "목록" -> wiseSayingController.actionList();
+                case "삭제" -> wiseSayingController.actionDelete(rq);
                 case "종료" -> {
                     systemController.actionExit();
                     return;
